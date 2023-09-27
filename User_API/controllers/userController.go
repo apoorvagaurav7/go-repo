@@ -32,6 +32,7 @@ func (a *UserController) Register(c *gin.Context) {
 		c.IndentedJSON(http.StatusCreated, result)
 	}
 }
+
 func (a *UserController) Login(c *gin.Context) {
 	fmt.Println("User LoggedIn")
 	var user entities.Login

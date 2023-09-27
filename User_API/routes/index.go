@@ -15,7 +15,7 @@ func UserRoutes(r *gin.Engine, a controllers.UserController) {
 
 func ProductRoutes(r *gin.Engine, p controllers.ProductController) {
 	product := r.Group("/userapi/product")
-	product.POST("/addProduct", p.AddProduct)
-	product.GET("/getProductsById", p.GetProductsById)
-	product.GET("/searchProduct", p.SearchProduct)
+	product.POST("/addproduct", p.AddProduct)
+	product.GET("/getproductsbyid", p.GetProductsById)
+	product.GET("/searchproduct", p.SearchProduct)
 }

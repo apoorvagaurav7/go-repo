@@ -25,8 +25,7 @@ var (
 func main() {
 	server = gin.Default()
 	InitializeDatabase()
-	//InitializeAuthentication()
-	InitializeProducts()
+	//InitializeProducts()
 	InitializeUsers()
 	ctx1, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
@@ -42,12 +41,13 @@ func InitializeDatabase() {
 		fmt.Println("Connected to Database")
 	}
 }
-func InitializeProducts() {
-	productCollection := config.GetCollection(mongoClient, "UserAPI", "TestProducts")
-	productSvc := services.InitProductService(productCollection)
-	productCtrl := controllers.InitProductController(productSvc)
-	routes.ProductRoutes(server, *productCtrl)
-}
+
+//	func InitializeProducts() {
+//		productCollection := config.GetCollection(mongoClient, "UserAPI", "TestProducts")
+//		productSvc := services.InitProductService(productCollection)
+//		productCtrl := controllers.InitProductController(productSvc)
+//		routes.ProductRoutes(server, *productCtrl)
+//	}
 func InitializeUsers() {
 	userCollection := config.GetCollection(mongoClient, "UserAPI", "TestUsers")
 	userService := services.InitUserService(userCollection)

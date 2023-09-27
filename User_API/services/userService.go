@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -26,6 +27,7 @@ func InitUserService(collection *mongo.Collection) interfaces.IUser {
 
 func (uc *UserService) Register(user *entities.User) (*entities.SignupResponse, error) {
 	ctx := context.Background()
+	user.ID = primitive.NewObjectID()
 	user.CreatedAt = time.Now()
 	user.UpdatedAt = user.CreatedAt
 	user.Email = strings.ToLower(user.Email)
@@ -43,11 +45,11 @@ func (uc *UserService) Register(user *entities.User) (*entities.SignupResponse, 
 	// Create a unique index for the email field
 	opt := options.Index()
 	opt.SetUnique(true)
-	index := mongo.IndexModel{Keys: bson.M{"email": 1}, Options: opt}
+	//index := mongo.IndexModel{Keys: bson.M{"email": 1}, Options: opt}
 
-	if _, err := uc.UserCollection.Indexes().CreateOne(ctx, index); err != nil {
-		return nil, errors.New("could not create index for email")
-	}
+	// if _, err := uc.UserCollection.Indexes().CreateOne(ctx, index); err != nil {
+	// 	return nil, errors.New("could not create index for email")
+	// }
 
 	var newUser entities.SignupResponse
 	query := bson.D{{"_id", res.InsertedID}}
