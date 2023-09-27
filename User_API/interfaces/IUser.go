@@ -1,9 +1,9 @@
 package interfaces
 
-import "github.com/apoorvagaurav7/GO-REPO/entities"
+import "go-repo/User_API/entities"
 
-type IProduct interface {
-	Insert(product *entities.Product) (string, error)
-	GetProducts() ([]*entities.Product, error)
-	UpdateProduct(product *entities.Product) (string, error)
+type IUser interface {
+	Register(user *entities.User) (*entities.SignupResponse, error)
+	Login(user *entities.Login) (*entities.LoginResponse, error)
+	//Logout(*entities.Logout) (*entities.LogoutResponse, error)
 }

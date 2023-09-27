@@ -3,10 +3,10 @@ package config
 import (
 	"context"
 	"fmt"
+	"go-repo/User_API/constants"
 	"log"
 	"time"
 
-	"github.com/apoorvagaurav7/GO-REPO/constants"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
